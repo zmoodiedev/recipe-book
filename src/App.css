@@ -2,6 +2,7 @@
 :root {
   --green: #006241;
   --black: #191919;
+  --light-grey: #F6F6F6;
   --white: #fff;
 
   --primary-font: "Manrope", sans-serif;
@@ -14,10 +15,18 @@
 body {
   font-family: var(--primary-font);
   font-size: 16px;
+  background-color: var(--light-grey);
+  padding-bottom: 4rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--secondary-font);
+}
+
+h1 {
+  font-size: 2.4rem;
+  color: var(--green);
+  margin: 3rem 0;
 }
 
 a {
@@ -30,4 +39,10 @@ a {
     color: var(--black);
     font-weight: 600;
   }
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
 }

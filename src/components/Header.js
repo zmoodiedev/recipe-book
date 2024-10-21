@@ -12,7 +12,7 @@ import './Header.css';
 const Header = () => {
     return (
         <header>
-            <div id="headWrap">
+            <div id="headWrap" className="container">
                 <div className="logo">Recipe Book</div>
                 <Nav />
                 <div id="loginLink">

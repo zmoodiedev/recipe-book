@@ -1,0 +1,36 @@
+.recipe-card {
+    flex: 1 1 18%;
+    width: auto;
+    
+    & .recipe-img {
+        width: 100%;
+    }
+
+    & .recipe-details {
+        display: flex;
+        flex-direction: row;
+        column-gap: 1.5rem;
+        flex-wrap: wrap;
+        padding: .5rem 0;
+
+        & .serving-size {
+            flex: 1;
+            font-size: .9rem;
+        }
+
+        & .cook-time {
+            flex: 1;
+            font-size: .9rem;
+        }
+
+        & .icon {
+            margin-right: .5rem;
+        }
+    }
+
+    & .recipe-title {
+        flex: 0 0 100%;
+        margin: 0;
+        color: var(--green);
+    }
+}

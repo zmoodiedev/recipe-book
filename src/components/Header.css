@@ -1,11 +1,13 @@
 header {
     background-color: #fff;
-    padding: 14px;
-    width: var(--max-width);
-    margin: 0 auto;
+    padding: 14px 0;
+
 }
 
 #headWrap {
+    background-color: #fff;
+    max-width: var(--max-width);
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     justify-content:space-between;

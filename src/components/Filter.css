@@ -1,0 +1,36 @@
+#filterWrap {
+    background-color: var(--white);
+    border-radius: 6px;
+    margin-bottom: 2rem;
+
+    & .filter {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        padding: .9rem;
+        margin: 0;
+        list-style-type: none;
+        
+        & .filter-item {
+            background-color: var(--light-grey);
+            color: var(--black);
+            text-transform: uppercase;
+            font-size: .9rem;
+            padding: .5rem .8rem;
+            border-radius: 6px;
+            transition: all .2s ease-in-out;
+
+            &.active {
+                background-color: var(--green);
+                color: var(--white);
+            }
+
+            &:hover{
+                cursor: pointer;
+                background-color: var(--green);
+                color: var(--white);
+                opacity: .9;
+            }
+        }
+    }
+}
