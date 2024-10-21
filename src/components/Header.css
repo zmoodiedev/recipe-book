@@ -1,0 +1,28 @@
+header {
+    background-color: #fff;
+    padding: 14px;
+    width: var(--max-width);
+    margin: 0 auto;
+}
+
+#headWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--secondary-font);
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+#loginLink {
+    cursor: pointer;
+}
+
+.login-icon {
+    margin-right: .6rem;
+}

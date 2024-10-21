@@ -1,0 +1,9 @@
+#mainNav {
+
+    & .nav-items {
+        display: inline-flex;
+        gap: 3rem;
+        list-style-type: none;
+    }
+
+}
