@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import Nav from './Nav';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ const Header = () => {
     return (
         <header>
             <div id="headWrap" className="container">
-                <div className="logo">Recipe Book</div>
+                <Link to="/" className="logo">Recipe Book</Link>
                 <Nav />
                 <div id="loginLink">
                     <FontAwesomeIcon icon={faUser} className="login-icon" /> Login

@@ -1,6 +1,6 @@
 import React from "react";
-import Filter from './Filter';
-import RecipeGrid from "./Recipes/RecipeGrid";
+import Filter from '../Filter';
+import RecipeGrid from "./RecipeGrid";
 
 const SearchRecipes = () => {
     return (

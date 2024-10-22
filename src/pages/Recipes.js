@@ -1,14 +1,12 @@
 import React from "react";
-import CTA from "../components/CTA";
 import SearchRecipes from "../components/Recipes/SearchRecipes";
 
-const Home = () => {
+const Recipes = () => {
     return (
-        <>
-            <CTA />
+        <section id="searchRecipes" className="container">
             <SearchRecipes />
-        </>
+        </section>
     );
 };
 
-export default Home;
+export default Recipes;
