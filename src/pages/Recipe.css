@@ -3,3 +3,21 @@
     height: 400px;
     background-color: var(--black);
 }
+
+.title {
+    margin-bottom: 1rem;
+}
+
+.details {
+    display: flex;
+    column-gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.instructions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    container-type: inline-size;
+    padding-bottom: 4rem;
+}

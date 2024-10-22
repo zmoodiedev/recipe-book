@@ -1,0 +1,34 @@
+.directions {
+    flex-basis: 100%;
+    padding: 2rem;
+
+    h2 {
+        margin-top: 0;
+    }
+
+    & .steps {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: recipe-steps;
+
+        & .step {
+            font-size: 1.1rem;
+            padding: 1rem 0;
+            counter-increment: recipe-steps;
+
+            &::before {
+                content: "Step " counter(recipe-steps) " ";
+                color: var(--black);
+                font-weight: bold;
+                display: block;
+            }
+        }
+    }
+}
+
+@container (min-width: 992px) {
+    .directions {
+        flex: 1 1 50%;
+    }
+}

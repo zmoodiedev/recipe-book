@@ -29,6 +29,15 @@ h1 {
   margin: 3rem 0;
 }
 
+h2 {
+  margin-top: 0;
+  font-family: var(--primary-font);
+  font-weight: 500;
+  color: var(--green);
+  text-transform: uppercase;
+  margin: 0 0 1rem;
+}
+
 a {
   color: var(--green);
   text-decoration: none;
