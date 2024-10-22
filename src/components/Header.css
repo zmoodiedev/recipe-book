@@ -28,3 +28,13 @@ header {
 .login-icon {
     margin-right: .6rem;
 }
+
+.username {
+    border: none;
+    font-family: var(--secondary-font);
+    background-color: var(--white);
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--green);
+}

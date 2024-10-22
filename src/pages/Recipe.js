@@ -1,4 +1,5 @@
 import React from "react";
+import Categories from "../components/Recipes/Categories";
 import Ingredients from "../components/Recipes/Ingredients";
 import Directions from "../components/Recipes/Directions";
 import ButtonSection from "../components/ButtonSection";
@@ -10,7 +11,9 @@ import './Recipe.css';
 const Recipes = () => {
     return (
         <section className="recipe">
-            <div className="featured-image"></div>
+            <div className="featured-image">
+                <Categories />
+            </div>
             <div className="recipe-wrap container">
                 <h1 className="title">French Toast</h1>
                 <div className="details">
