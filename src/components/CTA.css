@@ -1,5 +1,20 @@
 #CTA {
     min-height: 500px;
     width: 100%;
-    background-color: var(--black);
+    background-image: url('../assets/images/cta_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+
+    &::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background-color: var(--green);
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: .9;
+    }
 }

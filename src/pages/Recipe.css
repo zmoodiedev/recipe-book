@@ -1,28 +1,54 @@
-.featured-image {
-    width: 100%;
-    min-height: 500px;
-    background-color: var(--black);
+.recipe-header {
     display: flex;
-    align-items: flex-end;
-    background-image: url(../assets/images/french-toast.webp);
-    background-size: cover;
-    background-position: center -50%;
+    flex-direction: row;
+    background-color: var(--green);
+
+    & .featured-image {
+        flex: 2;
+        width: 100%;
+        min-height: 400px;
+        background-color: var(--black);
+        display: flex;
+        align-items: flex-end;
+        background-image: url(../assets/images/french-toast.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    & .recipe-info {
+        flex: 1;
+        padding: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        & .details {
+            display: flex;
+            column-gap: 2rem;
+            color: var(--white)
+        }
+    
+        & .title {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: var(--white)
+        }
+
+    }
+
 }
 
-.title {
-    margin-bottom: 1rem;
-}
+.recipe-wrap {
 
-.details {
-    display: flex;
-    column-gap: 2rem;
-    margin-bottom: 4rem;
-}
+    margin-top: 4rem;
 
-.instructions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    container-type: inline-size;
-    padding-bottom: 4rem;
+    & .instructions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        container-type: inline-size;
+        padding-bottom: 4rem;
+    }
 }

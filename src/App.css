@@ -46,7 +46,6 @@ a {
 
   &:hover {
     color: var(--black);
-    font-weight: 600;
   }
 }
 

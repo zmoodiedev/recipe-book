@@ -7,13 +7,18 @@ const Ingredients = ({ ingredients }) => {
     return (
         <div className="ingredients">
             <h2>Ingredients</h2>
-            <ul className="ingredient-list">
-                {ingredients.map((ingredient, index) => (
-                    <li key={index} className="ingredient">
-                        <FontAwesomeIcon icon={faSquarePlus} className="add-ingredient" />{ingredient}
-                    </li>
-                ))}
-            </ul>
+            {ingredients ?
+                <ul className="ingredient-list">
+                    {ingredients.map((ingredient, index) => (
+                        <li key={index} className="ingredient">
+                            <FontAwesomeIcon icon={faSquarePlus} className="add-ingredient" />{ingredient}
+                        </li>
+                    ))}
+                </ul>
+                :
+                <div>No ingredients provided.</div>
+            }
+
         </div>
     );
 };
