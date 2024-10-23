@@ -7,19 +7,21 @@ import { faClock } from '@fortawesome/free-solid-svg-icons';
 
 import './RecipeCard.css';
 
-const RecipeCard = () => {
+
+
+const RecipeCard = ({ recipe }) => {
     return (
         <div className="recipe-card">
-            <Link to="/recipe"><img src={FrenchToast} alt="" className="recipe-img" /></Link>
+            <Link to={`/recipe/${recipe.id}`}><img src={FrenchToast} alt="" className="recipe-img" /></Link>
             <div className="recipe-details">
                 <div className="serving-size">
-                <FontAwesomeIcon icon={faUtensils} className="icon" /> 2 Servings
+                    <FontAwesomeIcon icon={faUtensils} className="icon" /> {recipe.serving} Servings
                 </div>
                 <div className="cook-time">
-                    <FontAwesomeIcon icon={faClock} className="icon" /> 40 Minutes
+                    <FontAwesomeIcon icon={faClock} className="icon" /> {recipe.time}
                 </div>
             </div>
-            <h3 className="recipe-title">French Toast</h3>
+            <h3 className="recipe-title">{recipe.name}</h3>
         </div>
     );
 };

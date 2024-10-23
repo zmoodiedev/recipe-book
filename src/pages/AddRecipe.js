@@ -29,7 +29,7 @@ const AddRecipe = () => {
                     <Directions />
                 </div>
             </div> 
-            <ButtonSection />
+            <ButtonSection page="add-recipe" />
         </section>
     );
 };

@@ -1,10 +1,23 @@
 import React from "react";
 import './ButtonSection.css';
 
-const ButtonSection = () => {
+const ButtonSection = ({ page }) => {
+    let buttonText;
+
+    switch (page) {
+        case 'add-recipe':
+            buttonText = 'Publish Recipe';
+            break;
+        case 'recipe':
+            buttonText = 'Edit Recipe';
+            break;
+        default:
+            buttonText = 'DEFAULT';
+    }
+
     return (
         <div className="button-section">
-            <button>Edit Recipe</button>
+            <button>{buttonText}</button>
         </div>
     );
 };

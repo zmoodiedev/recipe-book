@@ -1,13 +1,16 @@
 import React from 'react';
 import './Categories.css';
 
-const Categories = () => {
+const Categories = ({ categories }) => {
+    
     return (
         <div id="categoryWrap" className="container">
             <ul className="categories">
-                <li className="category">Breakfast</li>
-                <li className="category">Sweet</li>
-                <li className="category">Main</li>
+                {categories.map((category) => (
+                    <li key={category.id} className="category">
+                        {category.name}
+                    </li>
+                ))}
             </ul>
         </div>
     );
