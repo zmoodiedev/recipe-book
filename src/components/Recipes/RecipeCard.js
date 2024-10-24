@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FrenchToast from '../../assets/images/french-toast.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +11,7 @@ import './RecipeCard.css';
 const RecipeCard = ({ recipe }) => {
     return (
         <Link to={`/recipe/${recipe.name.replace(/\s+/g, '-').toLowerCase()}`} className="recipe-card">
-                <img src={FrenchToast} alt="" className="recipe-img" />
+                <img src={recipe.image} alt="" className="recipe-img" />
                 <div className="recipe-details">
                     {recipe.servings &&
                         <div className="serving-size">

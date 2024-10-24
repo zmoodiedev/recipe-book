@@ -18,7 +18,7 @@ const Recipe = () => {
     const formattedRecipeName = recipeName.replace(/-/g, ' '); // Convert hyphens back to spaces
 
     const { recipe, loading, error } = useFetchRecipe(formattedRecipeName); // Fetch recipe using the formatted name
-    const { categories } = useFetchCategories(recipe?.categories || []); 
+    const { categories } = useFetchCategories(recipe?.categories || []);
     
     if (loading) return <Loader />;
     if (error) return <div>{error}</div>;
@@ -27,7 +27,9 @@ const Recipe = () => {
     return (
         <section className="recipe">
             <div className="recipe-header">
-                <div className="featured-image">
+                <div
+                    className="featured-image"
+                    style={{backgroundImage: `url(${recipe.image})`}}>
                     <Categories categories={categories} />
                 </div>
                 <div className="recipe-info">
