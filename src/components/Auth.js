@@ -20,6 +20,7 @@ export const Auth = () => {
     const signInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
+            
         } catch (err) {
             console.error(err);
         }

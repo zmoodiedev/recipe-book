@@ -5,11 +5,6 @@ import AddButton from "../components/AddButton";
 import './AddRecipe.css';
 
 const AddRecipe = () => {
-
-    const handleAddIngredient = () => {
-        
-    }
-
     
     return (
         <>

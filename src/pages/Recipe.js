@@ -8,6 +8,7 @@ import ButtonSection from "../components/ButtonSection";
 import Loader from '../components/Loader';
 import NotFound from '../components/Recipes/NotFound';
 import { useParams } from "react-router-dom";
+import { getAuth } from 'firebase/auth';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensils, faClock } from "@fortawesome/free-solid-svg-icons";
 
@@ -16,8 +17,6 @@ import './Recipe.css';
 const Recipe = () => {
     const { recipeName } = useParams(); // Get the recipe name from the URL
     const formattedRecipeName = recipeName.replace(/-/g, ' '); // Convert hyphens back to spaces
-
-    console.log("Fetching recipe for:", formattedRecipeName); // Log the formatted recipe name
 
     const { recipe, loading, error } = useFetchRecipe(formattedRecipeName); // Fetch recipe using the formatted name
     const { categories } = useFetchCategories(recipe?.categories || []);
@@ -28,11 +27,13 @@ const Recipe = () => {
     if (error) return <div>{error}</div>;
     if (!recipe) return <NotFound />; // Handle case when recipe is not found
 
+    const auth = getAuth();
+    const loggedInUser = auth.currentUser;
+
     const toggleEditMode = () => {
         setIsEditing(prev => !prev); // Toggle between view and edit mode
     };
 
-    console.log(recipeName);
 
     return (
         <section className="recipe">
@@ -73,8 +74,8 @@ const Recipe = () => {
                         <Directions directions={recipe.directions} />
                     </div>
                 )}
-            </div> 
-            <ButtonSection page="recipe" toggle={toggleEditMode} />
+            </div>
+            {loggedInUser && <ButtonSection page="recipe" toggle={toggleEditMode} />}
         </section>
     );
 };
