@@ -1,0 +1,109 @@
+.add-recipe {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+
+    & form#addRecipe {
+
+        width: 100%;
+        max-width: 500px;
+
+        & .form-row {
+
+            & .form-item {
+
+                & label:not(.sub-label) {
+                    padding-right: 1rem;
+                    display: block;
+                    margin-bottom: .5rem;
+                    text-transform: uppercase;
+                    font-size: .9rem;
+                    letter-spacing: .5px;
+                }
+
+                & input {
+                    font-size: 1.1rem;
+                    padding: .5rem;
+                    margin-bottom: 1.5rem;
+                    width: 100%;
+                    border-radius: 3px;
+                    border: 1px solid var(--black);
+                    background-color: var(--white);
+
+                    &:focus {
+                        outline: none !important;
+                        border: 1px solid var(--green);
+                        background-color: hsl(from var(--green) h s l / 0.2);
+                    }
+                }
+
+                & .serving-size {
+                    & input {
+                        max-width: 100px;
+                    }
+                }
+
+                & .time-split {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1rem;
+
+                    & input {
+                        margin-bottom: .3rem;
+                    }
+                    
+                    & .add-hours,
+                    & .add-minutes {
+                        flex: 1;
+                        max-width: 100px;
+                        color: var(--green);
+                        font-size: .9rem;
+                    }
+                }
+                
+            }
+
+            &.split-2 {
+                display: flex;
+                gap: 4rem;
+
+            }
+        }
+
+    }
+
+    & .img-submit {
+        font-size: 1.4rem;
+        color: #fff;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    
+
+    & input {
+        background-color: transparent;
+        border: 1px solid var(--green);
+        
+
+        &.add-title {
+            color: var(--white);
+            font-family: var(--secondary-font);
+            font-size: 2.4rem;
+            text-align: center;
+        }
+
+        &.serving-size,
+        &.cook-time {
+            color: var(--white);
+        }
+
+        &::placeholder {
+            color: inherit;
+            opacity: .6;
+        }
+    }
+
+}

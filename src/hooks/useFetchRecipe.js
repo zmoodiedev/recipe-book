@@ -7,12 +7,13 @@ const useFetchRecipe = (formattedRecipeName) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
+
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
-                const hardcodedName = "French Toast"; // Replace with an actual recipe name
-        const q = query(collection(db, "recipes"), where("name", "==", hardcodedName));
-        const querySnapshot = await getDocs(q);
+                const q = query(collection(db, "recipes"), where("name", "==", formattedRecipeName));
+                const querySnapshot = await getDocs(q);
 
                 console.log("Query snapshot:", querySnapshot); // Debugging line
 

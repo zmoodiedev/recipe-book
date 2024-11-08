@@ -9,13 +9,22 @@ import './RecipeCard.css';
 
 
 const RecipeCard = ({ recipe }) => {
+
+    const toTitleCase = (str) => {
+        return str
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    };
+
     return (
-        <Link to={`/recipe/${recipe.name.replace(/\s+/g, '-').toLowerCase()}`} className="recipe-card">
+        <Link to={`/recipe/${toTitleCase(recipe.name).replace(/\s+/g, '-')}`} className="recipe-card">
                 <img src={recipe.image} alt="" className="recipe-img" />
                 <div className="recipe-details">
                     {recipe.servings &&
                         <div className="serving-size">
-                            <FontAwesomeIcon icon={faUtensils} className="icon" /> {recipe.serving} Servings
+                            <FontAwesomeIcon icon={faUtensils} className="icon" /> {recipe.servings} Servings
                         </div>
                     }
                     {recipe.time &&

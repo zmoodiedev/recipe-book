@@ -1,0 +1,6 @@
+.add {
+    font-size: 1.4rem;
+    border: none;
+    background-color: transparent;
+    color: var(--green);
+}

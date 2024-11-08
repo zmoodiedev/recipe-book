@@ -7,10 +7,8 @@ import './App.css';
 import Header from "./components/Header";
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Recipes from './pages/Recipes';
 import Recipe from './pages/Recipe';
 import AddRecipe from './pages/AddRecipe';
-import ShoppingList from './pages/ShoppingList';
 
 
 function App() {
@@ -41,10 +39,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipe/:recipeName" element={<Recipe />} />
         <Route path="/add-recipe" element={<AddRecipe />} />
-        <Route path="/shopping-list" element={<ShoppingList />} />
       </Routes>
     </Router>
   );

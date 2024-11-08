@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetchRecipe from "../hooks/useFetchRecipe";
 import useFetchCategories from "../hooks/useFetchCategories";
 import Categories from "../components/Recipes/Categories";
@@ -17,12 +17,22 @@ const Recipe = () => {
     const { recipeName } = useParams(); // Get the recipe name from the URL
     const formattedRecipeName = recipeName.replace(/-/g, ' '); // Convert hyphens back to spaces
 
+    console.log("Fetching recipe for:", formattedRecipeName); // Log the formatted recipe name
+
     const { recipe, loading, error } = useFetchRecipe(formattedRecipeName); // Fetch recipe using the formatted name
     const { categories } = useFetchCategories(recipe?.categories || []);
     
+    const [isEditing, setIsEditing] = useState(false); // New state for editing mode
+
     if (loading) return <Loader />;
     if (error) return <div>{error}</div>;
     if (!recipe) return <NotFound />; // Handle case when recipe is not found
+
+    const toggleEditMode = () => {
+        setIsEditing(prev => !prev); // Toggle between view and edit mode
+    };
+
+    console.log(recipeName);
 
     return (
         <section className="recipe">
@@ -52,13 +62,19 @@ const Recipe = () => {
             </div>
 
             <div className="recipe-wrap container">
-                
-                <div className="instructions">
-                    <Ingredients ingredients={recipe.ingredients} />
-                    <Directions directions={recipe.directions} />
-                </div>
+                {isEditing ? ( // Conditional rendering based on editing state
+                    <div>
+                        {/* Add your editing form here */}
+                        <button onClick={toggleEditMode}>Save</button> {/* Button to save changes */}
+                    </div>
+                ) : (
+                    <div className="instructions">
+                        <Ingredients ingredients={recipe.ingredients} />
+                        <Directions directions={recipe.directions} />
+                    </div>
+                )}
             </div> 
-            <ButtonSection page="recipe" />
+            <ButtonSection page="recipe" toggle={toggleEditMode} />
         </section>
     );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import './ButtonSection.css';
 
-const ButtonSection = ({ page }) => {
+const ButtonSection = ({ page, toggle }) => {
     let buttonText;
 
     switch (page) {
@@ -17,7 +17,7 @@ const ButtonSection = ({ page }) => {
 
     return (
         <div className="button-section">
-            <button>{buttonText}</button>
+            <button onClick={toggle}>{buttonText}</button>
         </div>
     );
 };
