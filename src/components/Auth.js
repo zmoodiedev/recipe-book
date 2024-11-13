@@ -1,5 +1,6 @@
+import GoogleButton from './GoogleButton';
 import { auth, googleProvider } from "../config/firebase"
-import { createUserWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup} from "firebase/auth";
 import { useState } from "react";
 
 import './Auth.css';
@@ -26,28 +27,38 @@ export const Auth = () => {
         }
     };
 
-    const logout = async () => {
-        try {
-            await signOut(auth);
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
     return (
         <div>
-            <input
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-            />
-            <button onClick={signIn}>Sign In</button>
-            <button onClick={signInWithGoogle}>Sign In With Google</button>
-            <button onClick={logout}>Sign Out</button>
+            <form>
+                <div className="form-row">
+                    <div className="form-item">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                            placeholder="Enter Email"
+                            name="email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="email-input"
+                        />
+                    </div>
+                </div>
+                <div className="form-row">
+                    <div className="form-item">
+                    <label htmlFor="password">Password</label>
+                        <input
+                            placeholder="Enter Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            type="password"
+                        />
+                    </div>
+                </div>
+            </form>
+            <div className="login-btns">
+                <button onClick={signIn} type="button" className="sign-in">Sign In</button>
+                <span className="login-divider"><hr />or<hr/></span>
+                <GoogleButton onClick={signInWithGoogle} />
+            </div>
+
         </div>
     )
 }
