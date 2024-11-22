@@ -34,7 +34,7 @@ const Ingredients = ({ ingredients = [], setIngredients }) => {
                     onChange={(e) => setNewIngredient(e.target.value)}
                     placeholder="Add an ingredient"
                 />
-                <button onClick={handleAddIngredient}>
+                <button onClick={handleAddIngredient} className="add">
                     <FontAwesomeIcon icon={faSquarePlus} /> Add
                 </button>
                 </>

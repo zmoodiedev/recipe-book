@@ -11,12 +11,10 @@ async function fetchDataFromFirestore() {
     querySnapshot.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data()});
     });
-    return data.sort((a, b) => a.name.localeCompare(b.name));
-    
+    return data.sort((a, b) => a.name.localeCompare(b.name));   
 }
 
-const Filter = () => {
-
+const Filter = ({ assignedCategoryIds }) => {
     const [categoryData, setCategoryData] = useState([]);
 
     useEffect(() => {
@@ -25,19 +23,37 @@ const Filter = () => {
             setCategoryData(data);
         }
         fetchData();
-        
     }, []);
+
+    const filteredCategories = categoryData.filter(category =>
+        Array.isArray(assignedCategoryIds) && assignedCategoryIds.includes(category.id)
+    );
+
+
+    const handleClick = (event) => {
+        const clickedCategory = event.target;
+        if (clickedCategory.classList.contains("category")) {
+            clickedCategory.classList.toggle("active");
+
+            const activeCategories = document.getElementsByClassName("category active");
+            if (activeCategories.length === 0) {
+                const allCategory = document.querySelector(".category");
+                allCategory.classList.add("active");
+            }
+        }
+    }
 
     return (
         <div id="filterWrap">
-            {categoryData[0] ? (
+            {filteredCategories.length > 0 ? (
                 <ul className="filter categories">
-                    <li className="category">All</li>
-                    {categoryData.map((category, index) => (
+                    <li className="category active" onClick={handleClick}>All</li>
+                    {filteredCategories.map((category, index) => (
                             <li
                                 key={index}
                                 id={category.id}
                                 className="category"
+                                onClick={handleClick}
                             >{category.name}</li>
                     ))}
                 </ul>

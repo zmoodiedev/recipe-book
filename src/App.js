@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser, setLoading } from './core/UserSlice';
 import { auth } from './config/firebase';
@@ -14,11 +14,12 @@ import AddRecipe from './pages/AddRecipe';
 function App() {
 
   const dispatch = useDispatch();
-
+  const [user, setUser] = useState(null);
   
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
+        setUser(authUser);
         dispatch(
           loginUser({
             uid: authUser.uid,
@@ -29,8 +30,11 @@ function App() {
         dispatch(setLoading(false));
       } else {
         console.log('User is not logged in');
+        setUser(null); // Clear user state
       }
     });
+
+    return () => unsubscribe(); // Clean up subscription on unmount
   }, [dispatch]);
 
   return (
@@ -38,9 +42,9 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={ !user ? <Login /> : <Navigate to="/" />} />
         <Route path="/recipe/:recipeName" element={<Recipe />} />
-        <Route path="/add-recipe" element={<AddRecipe />} />
+        <Route path="/add-recipe" element={ user ? <AddRecipe /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );

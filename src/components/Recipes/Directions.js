@@ -36,7 +36,7 @@ const Directions = ({ directions = [], setDirections }) => {
                             onChange={(e) => setNewDirection(e.target.value)}
                             placeholder="Add a step."
                         />
-                        <button onClick={handleAddDirection}>
+                        <button onClick={handleAddDirection} className="add">
                             <FontAwesomeIcon icon={faSquarePlus} /> Add
                         </button>
                     </>

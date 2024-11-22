@@ -1,6 +1,15 @@
 .add {
-    font-size: 1.4rem;
     border: none;
     background-color: transparent;
-    color: var(--green);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    & svg {
+        font-size: 1.4rem;
+        border: none;
+        background-color: transparent;
+        color: var(--green);
+    }
 }

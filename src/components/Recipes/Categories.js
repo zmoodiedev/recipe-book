@@ -8,7 +8,7 @@ const Categories = ({ categories }) => {
             <ul className="categories">
                 {categories.map((category) => (
                     <li key={category.id} className="category">
-                        {category.name}
+                        {category}
                     </li>
                 ))}
             </ul>

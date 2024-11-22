@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useFetchRecipe from "../hooks/useFetchRecipe";
-import useFetchCategories from "../hooks/useFetchCategories";
 import Categories from "../components/Recipes/Categories";
 import Ingredients from "../components/Recipes/Ingredients";
 import Directions from "../components/Recipes/Directions";
@@ -19,7 +18,6 @@ const Recipe = () => {
     const formattedRecipeName = recipeName.replace(/-/g, ' '); // Convert hyphens back to spaces
 
     const { recipe, loading, error } = useFetchRecipe(formattedRecipeName); // Fetch recipe using the formatted name
-    const { categories } = useFetchCategories(recipe?.categories || []);
     
     const [isEditing, setIsEditing] = useState(false); // New state for editing mode
 
@@ -41,7 +39,7 @@ const Recipe = () => {
                 <div
                     className="featured-image"
                     style={{backgroundImage: `url(${recipe.image})`}}>
-                    <Categories categories={categories} />
+                    <Categories categories={recipe.categories} />
                 </div>
                 <div className="recipe-info">
                     <h1 className="title">{recipe.name}</h1>

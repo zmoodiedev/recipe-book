@@ -2,11 +2,11 @@ import React from "react";
 import Filter from '../Filter';
 import RecipeGrid from "./RecipeGrid";
 
-const SearchRecipes = () => {
+const SearchRecipes = ({ recipes }) => {
     return (
         <section id="searchRecipes" className="container">
             <h1>Search Recipes</h1>
-            <Filter />
+            <Filter assignedCategoryIds={recipes.categories} />
             <RecipeGrid />
         </section>
     );

@@ -5,6 +5,10 @@ import AddButton from "../components/AddButton";
 import './AddRecipe.css';
 
 const AddRecipe = () => {
+
+    const handleAddIngredient = () => {
+        console.log("Add Ingredient");
+    }
     
     return (
         <>
@@ -38,10 +42,7 @@ const AddRecipe = () => {
                         <div className="form-item add-ingredients">
                             <label>Ingredients</label>
                             <ul>
-                                <li>Ingredient 1</li>
-                                <li>Ingredient 2</li>
-                                <li>Ingredient 3</li>
-                                <li><input type="text" name="add-ingredient" /><AddButton /></li>
+                                <li><input type="text" name="add-ingredient" /><AddButton onClick={handleAddIngredient} /></li>
                             </ul>
 
                             

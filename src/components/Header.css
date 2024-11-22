@@ -16,7 +16,7 @@ header {
 
 .logo {
     font-family: var(--secondary-font);
-    font-size: 2.6rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--black);
 }
@@ -27,14 +27,4 @@ header {
 
 .login-icon {
     margin-right: .6rem;
-}
-
-.username {
-    border: none;
-    font-family: var(--secondary-font);
-    background-color: var(--white);
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--green);
 }

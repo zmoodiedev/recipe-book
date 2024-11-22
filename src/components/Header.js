@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../core/UserSlice';
 import { getAuth, signOut } from "firebase/auth";
+import UserMenu from './UserMenu'
 import Nav from './Nav';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,6 +23,7 @@ const Header = () => {
     const handleLogout = () => {
         dispatch(loginUser());
         signOut(auth);
+        window.location.reload();
     }
 
     return (
@@ -30,7 +32,9 @@ const Header = () => {
                 <Link to="/" className="logo">Recipe Book</Link>
                 <Nav />
                 {user ?
-                    <button className="username" onClick={handleLogout}>{user.username}</button>
+                    <>
+                        <UserMenu username={user.username} logout={handleLogout} />
+                    </>
                           :
                     <div id="loginLink">
                         <Link to="/login"><FontAwesomeIcon icon={faUser} className="login-icon" /> Login</Link>
