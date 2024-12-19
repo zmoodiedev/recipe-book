@@ -13,3 +13,8 @@ Welcome to the Recipe Book web app! This application allows users to create an a
 ## Technologies Used
 
 - **Frontend**: React.js
+- **Database**: Firebase
+
+## Future Plans
+
+- **Recipe Maker**: Integrate AI Model to allow users to select ingredients that they have, to create a unique recipe ideas.
