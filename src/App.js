@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Recipe from './pages/Recipe';
 import AddRecipe from './pages/AddRecipe';
+import SearchRecipes from './components/Recipes/SearchRecipes';
 
 
 function App() {

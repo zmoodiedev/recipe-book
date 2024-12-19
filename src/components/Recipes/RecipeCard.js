@@ -18,7 +18,6 @@ const RecipeCard = ({ recipe }) => {
             .join(' ');
     };
 
-    console.log(recipe.categories)
 
     return (
         <Link to={`/recipe/${toTitleCase(recipe.name).replace(/\s+/g, '-')}`} className="recipe-card">

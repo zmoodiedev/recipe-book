@@ -11,7 +11,8 @@
         margin: 0;
         list-style-type: none;
         
-        & .category {
+        & .category,
+        & #all {
             background-color: var(--light-grey);
             color: var(--black);
             text-transform: uppercase;

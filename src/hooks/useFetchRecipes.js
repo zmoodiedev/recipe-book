@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { db } from "../config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const useFetchRecipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -26,9 +26,26 @@ const useFetchRecipes = () => {
         };
 
         fetchRecipes();
+        
     }, []);
+    
 
-    return { recipes, loading, error };
+    const fetchRecipesByCategory = async (categoryIds) => {
+        try {
+            const q = query(collection(db, "recipes"), where("categoryId", "in", categoryIds));
+            const querySnapshot = await getDocs(q);
+            const filteredRecipes = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            return filteredRecipes;
+        } catch (err) {
+            console.error("Error fetching recipes by category:", err);
+            return [];
+        }
+    };
+
+    return { recipes, loading, error, fetchRecipesByCategory };
 };
 
 export default useFetchRecipes;
