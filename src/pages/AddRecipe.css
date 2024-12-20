@@ -5,7 +5,7 @@
     & form#addRecipe {
 
         width: 100%;
-        max-width: 500px;
+        max-width: 700px;
 
         & .form-row {
 
@@ -32,7 +32,7 @@
                     &:focus {
                         outline: none !important;
                         border: 1px solid var(--green);
-                        background-color: hsl(from var(--green) h s l / 0.2);
+                        background-color: hsl(from var(--green) h s l / 0.1);
                     }
 
                     &::placeholder {
@@ -58,7 +58,6 @@
                     & .add-hours,
                     & .add-minutes {
                         flex: 1;
-                        max-width: 100px;
                     }
                 }
                 
@@ -113,6 +112,16 @@
                     & .name {
                         flex: 3;
                     }
+                }
+
+                & .step {
+                    margin-bottom: 2rem;
+                }
+
+                & h3.step-number {
+                    font-weight: 600;
+                    margin-bottom: .5rem;
+                    margin-right: 2rem;
                 }
             }
         }

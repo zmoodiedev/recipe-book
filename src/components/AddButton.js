@@ -3,9 +3,9 @@ import { faSquarePlus } from '@fortawesome/free-solid-svg-icons';
 import './AddButton.css';
 
 
-const AddButton = ({ action }) => {
+const AddButton = ({ onClick }) => {
     return (
-        <button onClick={action} className="add" title="Add"><FontAwesomeIcon icon={faSquarePlus} /></button>
+        <button onClick={onClick} className="add" title="Add"><FontAwesomeIcon icon={faSquarePlus} /></button>
     )
 }
 
