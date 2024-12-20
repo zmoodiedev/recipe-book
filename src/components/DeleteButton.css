@@ -1,4 +1,4 @@
-.add {
+.delete {
     border: none;
     background-color: transparent;
     display: inline-flex;
@@ -8,7 +8,7 @@
     cursor: pointer;
 
     & svg {
-        font-size: 1.4rem;
+        font-size: 1rem;
         border: none;
         background-color: transparent;
         color: var(--green);

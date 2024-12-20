@@ -6,8 +6,11 @@ const Categories = ({ categories }) => {
     return (
         <div id="categoryWrap" className="container">
             <ul className="categories">
-                {categories.map((category) => (
-                    <li key={category.id} className="category">
+                {categories.map((category, index) => (
+                    <li
+                        key={category.id || index}
+                        className="category"
+                    >
                         {category}
                     </li>
                 ))}

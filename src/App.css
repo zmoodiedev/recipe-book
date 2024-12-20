@@ -2,6 +2,7 @@
 :root {
   --green: hsl(160, 100%, 19%);
   --black: #191919;
+  --medium-grey: #BBBBBB;
   --light-grey: #F6F6F6;
   --white: #fff;
 
@@ -16,7 +17,6 @@ body {
   font-family: var(--primary-font);
   font-size: 16px;
   background-color: var(--light-grey);
-  padding-bottom: 4rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,13 +49,22 @@ a {
   }
 }
 
+.sr-only {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  }
+
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-button:not(.add, .gsi-material-button) {
+button:not(.add, .delete, .gsi-material-button) {
   background-color: var(--light-grey);
   min-width: 250px;
   padding: 1rem;
@@ -70,6 +79,7 @@ button:not(.add, .gsi-material-button) {
       box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px, rgba(0, 0, 0, 0.05) 0px 2px 1px, rgba(0, 0, 0, 0.05) 0px 4px 2px, rgba(0, 0, 0, 0.05) 0px 8px 4px, rgba(0, 0, 0, 0.05) 0px 16px 8px;
   }
 }
+
 
 
 
@@ -93,7 +103,7 @@ button:not(.add, .gsi-material-button) {
       margin-bottom: 2rem;
       width: 100%;
       border-radius: 3px;
-      border: 1px solid #BBBBBB;
+      border: 1px solid var(--medium-grey);
       background-color: var(--white);
 
       &:focus {

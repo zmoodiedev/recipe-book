@@ -9,7 +9,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Recipe from './pages/Recipe';
 import AddRecipe from './pages/AddRecipe';
-import SearchRecipes from './components/Recipes/SearchRecipes';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -47,6 +47,7 @@ function App() {
         <Route path="/recipe/:recipeName" element={<Recipe />} />
         <Route path="/add-recipe" element={ user ? <AddRecipe /> : <Navigate to="/login" />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

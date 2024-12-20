@@ -21,18 +21,22 @@
                 }
 
                 & input {
-                    font-size: 1.1rem;
+                    font-size: .9rem;
                     padding: .5rem;
                     margin-bottom: 1.5rem;
                     width: 100%;
                     border-radius: 3px;
-                    border: 1px solid var(--black);
+                    border: 1px solid var(--medium-grey);
                     background-color: var(--white);
 
                     &:focus {
                         outline: none !important;
                         border: 1px solid var(--green);
                         background-color: hsl(from var(--green) h s l / 0.2);
+                    }
+
+                    &::placeholder {
+                        opacity: .3;
                     }
                 }
 
@@ -55,8 +59,6 @@
                     & .add-minutes {
                         flex: 1;
                         max-width: 100px;
-                        color: var(--green);
-                        font-size: .9rem;
                     }
                 }
                 
@@ -66,6 +68,52 @@
                 display: flex;
                 gap: 4rem;
 
+            }
+
+            & .add-ingredients,
+            & .add-steps {
+
+                & ul.ingredient-list,
+                & ul.steps-list {
+                    list-style-type: none;
+                    margin: 1rem 0;
+                    padding-left: 1rem;
+
+                    & li.to-add {
+                        color: var(--green);
+                        
+                        &:not(:last-child) {
+                            margin-bottom: .8rem;
+                        }
+
+                        & .delete {
+                            margin-left: 1rem;
+                            pointer-events: none;
+                            opacity: 0;
+                            transition: opacity .2s ease-in;
+                        }
+
+                        &:hover .delete{
+                            pointer-events: initial;
+                            opacity: 1;
+                        }
+                    }
+                }
+
+                & .add-ingredient,
+                & .add-step {
+                    display: flex;
+                    gap: 1rem;
+                    align-items: flex-start;
+
+                    & .amount {
+                        flex: 1;
+                    }
+
+                    & .name {
+                        flex: 3;
+                    }
+                }
             }
         }
 
@@ -100,10 +148,6 @@
             color: var(--white);
         }
 
-        &::placeholder {
-            color: inherit;
-            opacity: .6;
-        }
     }
 
 }
