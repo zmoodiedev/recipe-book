@@ -1,5 +1,5 @@
 export const getMeasurementLabel = (quantity, measurement) => {
-    if (measurement === "Cup") {
+    if (measurement === "Cups") {
         return quantity === "1" ? "Cup" : "Cups";
     }
     if (measurement === "Tbsps") {

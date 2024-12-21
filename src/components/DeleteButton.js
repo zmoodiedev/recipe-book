@@ -3,9 +3,9 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import './DeleteButton.css';
 
 
-const AddButton = ({ action }) => {
+const AddButton = ({ onClick }) => {
     return (
-        <button onClick={action} className="delete" title="Delete"><FontAwesomeIcon icon={faTrashCan} /></button>
+        <button onClick={onClick} className="delete" title="Delete"><FontAwesomeIcon icon={faTrashCan} /></button>
     )
 }
 
