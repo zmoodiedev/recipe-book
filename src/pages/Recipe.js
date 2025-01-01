@@ -69,7 +69,7 @@ const Recipe = () => {
                 ) : (
                     <div className="instructions">
                         <Ingredients ingredients={recipe.ingredients} />
-                        <Directions directions={recipe.directions} />
+                        <Directions steps={recipe.steps} />
                     </div>
                 )}
             </div>

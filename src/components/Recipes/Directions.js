@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 import './Directions.css';
 
-const Directions = ({ directions = [], setDirections }) => {
+const Directions = ({steps = [], setSteps }) => {
 
-    const [newDirection, setNewDirection] = useState("");
+    const [newStep, setNewStep] = useState("");
 
     const handleAddDirection = () => {
-        if (newDirection) {
-            setDirections(prevDirections => [...prevDirections, newDirection]);
-            setNewDirection(""); // Clear input field
+        if (newStep) {
+            setSteps(prevSteps => [...prevSteps, { id: prevSteps.length + 1, description: newStep }]);
+            setNewStep(""); // Clear input field
         }
     }
 
@@ -19,11 +19,11 @@ const Directions = ({ directions = [], setDirections }) => {
         <div className="directions">
             <h2>Directions</h2>
            
-            {directions.length > 0 ? (
+            {steps.length > 0 ? (
                 <ol type="1" className="steps">
-                {directions.map((direction, index) => (
-                    <li key={index} className="step">
-                        {direction}
+                {steps.map((step) => (
+                    <li key={step.id} className="step">
+                    {step.description}
                     </li>
                 ))}
                 </ol>
@@ -32,8 +32,8 @@ const Directions = ({ directions = [], setDirections }) => {
                         <div>No directions provided</div>
                         <input
                             type="text"
-                            value={newDirection}
-                            onChange={(e) => setNewDirection(e.target.value)}
+                            value={newStep}
+                            onChange={(e) => setNewStep(e.target.value)}
                             placeholder="Add a step."
                         />
                         <button onClick={handleAddDirection} className="add">

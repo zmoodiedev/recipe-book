@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getMeasurementLabel } from "../helpers/measurementLabels";
-import CategoryFilter from "../components/Recipes/CategoryFilter";
+import Categories from "../components/Recipes/Categories";
+import InputField from "../components/Forms/InputField";
+import FileDrop from "../components/Forms/FileDrop";
 import AddButton from "../components/AddButton";
 import DeleteButton from "../components/DeleteButton";
+import uploadRecipeToDatabase from '../hooks/useUploadRecipe';
 
 import './AddRecipe.css';
 
@@ -20,10 +23,6 @@ const AddRecipe = () => {
     const handleChangeRecipeName = (e) => {
         setRecipeName(e.target.value);
     };
-
-
-    // ===== Categories
-    const [selectedCategories] = useState([]);
 
 
     // ===== Servings
@@ -55,6 +54,10 @@ const AddRecipe = () => {
     const [measurement, setMeasurement] = useState('');
     const [ingredientName, setIngredientName] = useState('');
 
+    useEffect(() => {
+        console.log(ingredients); // Log ingredients whenever they change
+    }, [ingredients]);
+
     const handleChangeQuantity = (e) => {
         setIngredientQuantity(e.target.value);
     };
@@ -70,8 +73,8 @@ const AddRecipe = () => {
     const handleAddIngredient = (e) => {
         e.preventDefault();
         if (ingredientQuantity && measurement && ingredientName) {
-            setIngredients(prevIngredients => [
-                ...prevIngredients,
+            setIngredients(Ingredients => [
+                ...Ingredients,
                 { id: Date.now(), quantity: ingredientQuantity,  measurement: measurement,  name: ingredientName } // Add a unique ID and amount
             ]);
             // Clear the input fields
@@ -89,12 +92,15 @@ const AddRecipe = () => {
 
     // ===== Steps
     const [steps, setSteps] = useState([]);
-
     const [stepDescription, setStepDescription] = useState('');
 
     const handleChangeStepDescription = (e) => {
         setStepDescription(e.target.value);
     };
+
+    useEffect(() => {
+        console.log(steps); // Log steps whenever they change
+    }, [steps]);
 
     const handleAddStep = (e) => {
         e.preventDefault();
@@ -113,19 +119,43 @@ const AddRecipe = () => {
         const newSteps = steps.filter((_, i) => i !== index);
         setSteps(newSteps);
     }
+
+    // Image Upload
+    const [imageUrl, setImageUrl] = useState('');
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const recipeData = {
+            name: recipeName,
+            servings: servings,
+            time: `${hours} hours ${minutes} minutes`,
+            ingredients: ingredients,
+            steps: steps,
+            image: imageUrl
+        };
+
+        try {
+            await uploadRecipeToDatabase(recipeData);
+        } catch (error) {
+            console.error("Error uploading recipe:", error);
+        }
+    };
+    
     
     return (
         <>
             <section className="add-recipe container">
                 <h1>Add a Recipe</h1>
-                <form id="addRecipe">
+                <form id="addRecipe" onSubmit={handleSubmit}>
                     <div className="form-row">
                         <div className="form-item recipe-name">
-                            <label htmlFor="name">Recipe Name</label>
-                            <input
-                                type="text"
-                                id="recipe-name"
-                                name="recipe-name"
+                            <InputField
+                                fieldLabel="Recipe Name"
+                                id={"recipe-name"}
+                                name={"recipe-name"}
                                 value={recipeName}
                                 onChange={handleChangeRecipeName}
                             />
@@ -134,7 +164,7 @@ const AddRecipe = () => {
                     <div className="form-row">
                         <div className="form-item recipe-categories">
                             <label htmlFor="categories">Categories</label>
-
+                            <Categories />
                         </div>
                     </div>
                     <div className="form-row split-2">
@@ -247,7 +277,7 @@ const AddRecipe = () => {
                             <ul className="steps-list">
                             {steps.map((step, index) => (
                                     <li
-                                        key={index}
+                                        key={step.id ||index}
                                         className="step"
                                     >
                                         <h3 className="step-number">Step {index + 1} <DeleteButton onClick={(e) => handleDeleteStep(index, e)} /></h3>
@@ -265,11 +295,20 @@ const AddRecipe = () => {
                                     value={stepDescription} 
                                     onChange={handleChangeStepDescription}
                                 ></textarea>
-                                <AddButton onClick={handleAddStep} />
                             </div>
+                            <AddButton onClick={handleAddStep} />
                         </div>
                     </div>
-                    <button className="green">Publish Recipe</button>
+                    <div className="form-row">
+                        <div className="form-item add-image">
+                            <label htmlFor="image">Featured Image</label>
+                            <FileDrop onUpload={(url) => {
+                                setImageUrl(url);
+                                console.log("Uploaded image URL:", url);
+                            }} />
+                        </div>
+                    </div>
+                    <button type="submit" className="green">Publish Recipe</button>
                 </form>              
             </section>
         </>

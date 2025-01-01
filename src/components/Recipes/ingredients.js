@@ -19,9 +19,9 @@ const Ingredients = ({ ingredients = [], setIngredients }) => {
             
             {ingredients.length > 0 ? (
                 <ul className="ingredient-list">
-                    {ingredients.map((ingredient, index) => (
-                        <li key={index} className="ingredient">
-                            {ingredient}
+                    {ingredients.map((ingredient) => (
+                        <li key={ingredient.id} className="ingredient">
+                        {ingredient.quantity} {ingredient.measurement} of {ingredient.name}
                         </li>
                     ))}
                 </ul>

@@ -3,18 +3,24 @@ import RecipeCard from "./RecipeCard";
 import './RecipeGrid.css';
 
 const RecipeGrid = ({ recipes }) => {
-    if (!Array.isArray(recipes) || recipes.length === 0) return <div>No recipes found.</div>;
 
     return (
-        <div id="recipeGrid">
-            {recipes.map((recipe) => (
-                <RecipeCard
-                    key={recipe.id}
-                    className="recipe-card"
-                    recipe={recipe}
-                />
-            ))}
-        </div>
+        <>
+            {!Array.isArray(recipes) || recipes.length === 0 ? (
+                <div className="no-recipes">No recipes found.</div>
+            ) : (
+                    <div id="recipeGrid">
+                        {recipes.map((recipe) => (
+                            <RecipeCard
+                                key={recipe.id}
+                                className="recipe-card"
+                                recipe={recipe}
+                            />
+                        ))}
+                    </div>
+
+            )}
+        </>
     );
 };
 

@@ -1,58 +1,56 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import useFetchRecipes from '../../hooks/useFetchRecipes';
 import './CategoryFilter.css';
 
 async function fetchDataFromFirestore() {
-    const querySnapshot = await getDocs(collection(db, "categories"));
-    const data = [];
-    querySnapshot.forEach((doc) => {
-        data.push({ id: doc.id, ...doc.data() });
-    });
-    return data.sort((a, b) => a.name.localeCompare(b.name));   
+   const querySnapshot = await getDocs(collection(db, "categories"));
+   const data = [];
+   querySnapshot.forEach((doc) => {
+       data.push({ id: doc.id, ...doc.data() });
+   });
+   return data.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export default function CategoryFilter({ onFilteredRecipes }) {
-    const [selectedCategories, setSelectedCategories] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const { recipes } = useFetchRecipes(); // Fetch recipes using the custom hook
-
+   const [selectedCategories, setSelectedCategories] = useState([]);
+   const [categories, setCategories] = useState([]);
+   const { recipes } = useFetchRecipes();
     useEffect(() => {
-        const fetchCategories = async () => {
-            const categoriesData = await fetchDataFromFirestore();
-            setCategories(categoriesData);
-        };
-        fetchCategories();
-    }, []);
-
-    const filterItems = () => {
-        if (selectedCategories.length > 0) {
-            const filtered = recipes.filter(recipe => 
-                recipe.categories && recipe.categories.some(category => 
-                    selectedCategories.includes(category) // Check if any category in the recipe matches the selected categories
-                )
-            );
-            onFilteredRecipes(filtered); // Pass filtered recipes to the parent
-        } else {
-            onFilteredRecipes(recipes); // Pass all recipes if no category is selected
-        }
-    };
-
+       const fetchCategories = async () => {
+           const categoriesData = await fetchDataFromFirestore();
+           setCategories(categoriesData);
+       };
+       fetchCategories();
+   }, []);
+    const filterItems = useCallback(() => {
+       if (selectedCategories.length > 0) {
+           const filtered = recipes.filter(recipe => 
+               recipe.categories && recipe.categories.some(category => 
+                   selectedCategories.includes(category)
+               )
+           );
+           onFilteredRecipes(filtered);
+       } else {
+           onFilteredRecipes(recipes);
+       }
+   }, [recipes, selectedCategories, onFilteredRecipes]);
     useEffect(() => {
-        filterItems();
-    }); // Add recipes to the dependency array
-
+       const debounceTimeout = setTimeout(() => {
+           filterItems();
+       }, 0); // Adjust the debounce time as needed
+        return () => clearTimeout(debounceTimeout); // Cleanup on unmount or when dependencies change
+   }, [filterItems]); // Only call filterItems when it changes
     const handleFilterButtonClick = (selectedCategory) => {
-        if (selectedCategories.includes(selectedCategory)) {
-            const categories = selectedCategories.filter((e) => e !== selectedCategory);
-            setSelectedCategories(categories);
-        } else {
-            setSelectedCategories([...selectedCategories, selectedCategory]);
-        }
-    };
-
-
+       setSelectedCategories(prevSelected => {
+           if (prevSelected.includes(selectedCategory)) {
+               return prevSelected.filter(e => e !== selectedCategory);
+           } else {
+               return [...prevSelected, selectedCategory];
+           }
+       });
+   };
 
     return (
         <div id="filterWrap">

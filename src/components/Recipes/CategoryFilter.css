@@ -1,7 +1,5 @@
 #filterWrap {
-    background-color: var(--white);
     border-radius: 6px;
-    margin-bottom: 2rem;
 
     & .filter.categories {
         display: flex;
